@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "karma-jasmine": "^0.2.3",
+    "update-node": "^0.1.0"
+  },
+  "devDependencies": {
+    "@angular-devkit/build-angular": "^12.2.7"
+  }
+}
