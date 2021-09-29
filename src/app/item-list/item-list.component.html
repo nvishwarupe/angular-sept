@@ -1,0 +1,94 @@
+<div *ngIf ="!projectListSelected">
+<h3> Task List</h3>
+</div>
+<div *ngIf ="projectListSelected">
+    <h3> Project List</h3>
+ </div>
+    
+
+<div >
+    
+        
+    <input type = text id="title-add" name="titleText" [(ngModel)] = "searchTitleText" > 
+    &nbsp;
+    <input type="checkbox" id="filter-id" name="filter" value="true" [(ngModel)] = "filterModel">
+    <label for="filter-id">  filter </label>
+    &nbsp;
+    <input type="checkbox" id="done-id" name="done" value="true" (click)="onCheckBoxDoneChange($event)">
+    <label for="done-id">  done </label>
+    &nbsp;
+    <input type="checkbox" id="project-id" name="projectListSelected" value="false" [(ngModel)] = "projectListSelected" >
+    <label for="project-id">  project</label>
+    
+  
+</div>
+
+
+
+
+<div *ngIf = "projectListSelected">
+     Projects and tasks under projects 
+    <div *ngFor="let item of items | title:searchTitleText:filterModel | done: doneFlag ">
+                <div *ngIf ="item.project === true">
+                    {{item.id}}  {{item.title}}  
+                </div>
+
+        <div *ngIf = "item.project === true">
+
+                    <div *ngFor="let taskitem of getAllTasksForAProject(item.id) | title:searchTitleText:filterModel  | done: doneFlag"> 
+
+                    <div class= "space" *ngIf = "taskitem.project === false && taskitem.parent === item.id" >
+        
+                            {{taskitem.id}}  {{taskitem.title}} 
+                    </div> 
+                    </div>
+            </div>
+
+        </div>
+
+ <!-- print task with no parents --> 
+    <div>
+        <BR>
+        Tasks with no parents: 
+    </div>   
+    <div *ngFor="let item of items | title:searchTitleText:filterModel | done: doneFlag">
+                <div *ngIf ="item.parent === '-1' && item.project === false">
+                    {{item.id}}  {{item.title}}  
+                </div>
+    </div>
+ 
+</div>
+
+    
+<div *ngIf = "!projectListSelected">
+
+only tasks list
+ <div *ngFor="let item of items | title:searchTitleText:filterModel | done: doneFlag ">
+    <div *ngIf ="item.project === false ">
+        {{item.id}}   {{item.title}}  
+    </div>
+</div>
+
+</div>
+
+
+        
+
+
+
+<div>
+    <button  (click)=  addItemInList(searchedValue)> Add an item</button>
+    <input type = text id="title-search" name="titleText" [(ngModel)]="searchedValue"> 
+    
+    <button  (click)= "startEditing()" > EDIT</button>
+    <button (click)= "deleteItem()"> DELETE</button>
+   
+
+
+</div>
+
+
+
+
+
+

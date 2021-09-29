@@ -1,0 +1,54 @@
+<p>add-item works!</p>
+
+
+<h3>Add an Item </h3>
+
+  <div>
+    <label for="Title">Title :   </label> 
+    <input type="text" [(ngModel)]="item.title" placeholder="Title"> 
+
+  </div>
+  <div>
+    <label for="Done">done :   </label> 
+
+    <input type="checkbox" [(ngModel)]="item.done" placeholder="Done">
+  </div> 
+  <div>
+    <label for="Project">isProject :   </label> 
+
+    <input type="checkbox" [(ngModel)]="item.project" placeholder="Project">
+  </div>
+   
+  <div>
+    <label for="time"> Time:    </label> 
+
+    <input type="time" [(ngModel)]="item.when" placeholder="When">
+  </div>
+  
+  <div>
+    <label for="Date"> Date:    </label> 
+  
+    <input type="Date" [(ngModel)]="item.deadline" placeholder="Deadline">
+  </div>
+  <div>
+    <label for="Details"> Details:    </label> 
+
+    <input type="string" [(ngModel)]="item.details" placeholder="Details">
+  </div>
+  <div>
+    select:  
+    <select [(ngModel)]="item.parent" >
+     <option value="undefined" selected disabled>Select option</option>
+     <option value="item.parent" selected disabled> {{item.parent}}</option>
+   
+   <option *ngFor="let parent of getAllProjects()" [ngValue]="parent.id">{{parent.id}} - {{parent.title}}</option>
+   </select>  
+ </div>
+  
+ 
+ 
+  <div>
+    <button  (click)="addItem()">Save</button>    
+   
+
+  </div>

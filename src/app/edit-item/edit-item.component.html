@@ -1,0 +1,66 @@
+<p>edit-item works!</p>
+
+<h3>Update the Item</h3>
+
+
+
+<div *ngIf="item != undefined">
+  <div>
+     <label for="Title">Title :   </label> 
+    <input type="text" [(ngModel)]="item.title" placeholder="Title"> Id  : {{item.id}}
+</div>
+  
+  <div class="float-container">  
+    <div class="float-child-left">
+        
+
+    
+            <div>
+                <label for="Done"> Done :   </label> 
+            
+                <input type="checkbox" [(ngModel)]="item.done" placeholder="Done">
+            </div> 
+            <div>
+                <label for="Done"> IsProject  :   </label> 
+            
+                <input type="checkbox" [(ngModel)]="item.project" placeholder="Project">
+            </div>
+            
+            <div>
+                <input type="time" [(ngModel)]="item.when" placeholder="When">
+            </div>
+            <div>
+                <input type="Date" [(ngModel)]="item.deadline" placeholder="Deadline">
+            </div>
+            
+    </div>  
+    <div class="float-child-right">
+            
+            <div>
+                <label for="Details"> Details:    </label> 
+   
+                <input type="textarea"  rows="4" cols="50" [(ngModel)]="item.details" placeholder="Details">
+            </div>
+    </div>
+    
+    </div>
+
+  <div>
+   select:  
+   <select [(ngModel)]="item.parent" >
+    <option value="undefined" selected disabled>Select option</option>
+    <option value="item.parent" selected disabled> {{item.parent}}</option>
+  
+  <option *ngFor="let parent of projects" [ngValue]="parent.id">{{parent.id}} - {{parent.title}}</option>
+  </select>  
+</div>
+  
+ 
+ 
+  <div>
+    <button  (click)="updateItem()">Save</button>    
+    <button  (click)="cancelUpdate()">Cancel</button>
+
+
+  </div>
+</div>

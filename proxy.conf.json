@@ -1,0 +1,14 @@
+{
+  "/items/*": {
+    "target": "http://localhost:3000",
+    "secure": false
+  },
+    "/taskid/*": {
+    "target": "http://localhost:3000",
+    "secure": false
+  }
+
+  
+  
+}
+
