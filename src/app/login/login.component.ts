@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
+import { NgForm } from '@angular/forms';
+
 
 
 
@@ -28,6 +30,7 @@ export class LoginComponent implements OnInit {
     {
       this.auth.login();
       this.router.navigate(['list-items'])
+      this.error = false;
 
     } else 
      {

@@ -216,7 +216,7 @@ saveItem(item: Item): Observable<any> {
     
   }
 
-// utility method
+// utility methods not used now
 
 getCounter() : Observable <TaskId>{
   return this.http.get<TaskId>(`/taskid?id=1000`);

@@ -8,7 +8,9 @@ import { Router } from '@angular/router';
 })
 export class HomeComponent implements OnInit {
 
+  loginMessage: string = "Please log in to use the application"
   constructor(private router: Router) { }
+
 
   ngOnInit(): void {
   }

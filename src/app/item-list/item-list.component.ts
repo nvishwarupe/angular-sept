@@ -33,6 +33,7 @@ export class ItemListComponent implements OnInit {
 
   idCounter = 100;
 
+  
 
   constructor(private dataService : DataService, private router: Router) { }
 
@@ -48,6 +49,9 @@ export class ItemListComponent implements OnInit {
     console.log(" ListComponent :ngOnInit() "+ JSON.stringify(this.items));
     //alert("projectListSelected " + this.projectListSelected);
   }
+
+
+  
 
   
  /* addItem(title : string ){
@@ -72,8 +76,9 @@ export class ItemListComponent implements OnInit {
 
   deleteItem(){
     if (window.getSelection() != null && !window.confirm('Are you sure you want to delete selected item?')) {
+      
       return
-    }
+    } 
     /*console.log("deleting item with title from data service " + title );
     const itemIndex : number = this.items.findIndex(item => item.title.includes(title));
     
@@ -232,7 +237,7 @@ export class ItemListComponent implements OnInit {
   startEditing(){
     if (window.getSelection) {
       let selectedText  = window.getSelection();
-      alert("selected text is" + selectedText);
+      //alert("selected text is" + selectedText);
       
       if(selectedText){
         let selectedTextString = selectedText.toString();
@@ -247,7 +252,7 @@ export class ItemListComponent implements OnInit {
 
         let id = idString.substr(0,selectedText.toString().indexOf(' ')); 
        
-        console.log("edit item id is -" + id);
+        //console.log("edit item id is -" + id);
         this.router.navigate(['edit-item', id])
 
       } else {

@@ -21,6 +21,16 @@ module.exports = function (config) {
       },
       clearContext: false // leave Jasmine Spec Runner output visible in browser
     },
+   
+    proxies: {
+     "/items/*": {
+        'target': 'http://localhost:3000',
+        'changeOrigin': true,
+        "secure": false
+
+      }
+    },
+   
     jasmineHtmlReporter: {
       suppressAll: true // removes the duplicated traces
     },
@@ -41,4 +51,5 @@ module.exports = function (config) {
     singleRun: false,
     restartOnFileChange: true
   });
+  
 };
