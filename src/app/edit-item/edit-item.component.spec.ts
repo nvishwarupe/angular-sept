@@ -68,6 +68,33 @@ it('should create', () => {
 }));
 */
 
+it('should edit form', () => {
+
+    //var titleInput: HTMLInputElement = <HTMLInputElement>document.getElementById("username-id");
+    //var idInput: HTMLInputElement = <HTMLInputElement>document.getElementById("password-id");
+    var submitButton: HTMLInputElement = <HTMLInputElement>document.getElementById("button-id");
+
+     let item : Item = new Item();
+     
+    // simulate user entering a new name into the input box
+    //titleInput.value = 'edited title';
+    //idInput.value= 'T300000';
+
+    spyOn(service, 'updateItem').and.returnValue(of(item));
+
+    //const onClickMock = spyOn(component, 'login' );
+
+    submitButton.click();
+
+    expect(service.updateItem).toHaveBeenCalled();
+
+
+
+
+});
+
+
+
 it('should route to list page', fakeAsync(() => {
   spyOn(authService, 'canActivate').and.returnValue(true);
   
@@ -91,7 +118,7 @@ it('should route to list page', fakeAsync(() => {
 
   router.navigate(["list-items"]);
   tick();
-  console.log("************** location path" + location.path());
+  //console.log("************** location path" + location.path());
   expect(location.path()).toBe('/list-items'); 
 
   
@@ -102,52 +129,52 @@ it("should test component update item using spy" ,
 () => { 
 
    
- let itemArray =      
- [  {
-   "id" : "T20000",
-   "title": "my test task",
-   "done": false,
-   "project": true,
-   "when": "8:00",
-   "deadline": new Date("2021-09-27T16:46:50.990Z"),
-   "details": "test details",
-   "parent": "-1"
-  }
- ];
+    let itemArray =      
+    [  {
+      "id" : "T20000",
+      "title": "my test task",
+      "done": false,
+      "project": true,
+      "when": "8:00",
+      "deadline": new Date("2021-09-27T16:46:50.990Z"),
+      "details": "test details",
+      "parent": "-1"
+      }
+    ];
 
- let item : Item =   {
-   "id" : "T20001",
-   "title": "my test task",
-   "done": false,
-   "project": true,
-   "when": "8:00",
-   "deadline": new Date("2021-09-27T16:46:50.990Z"),
-   "details": "test details",
-   "parent": "-1"
-  };
+    let item : Item =   {
+      "id" : "T20001",
+      "title": "my test task",
+      "done": false,
+      "project": true,
+      "when": "8:00",
+      "deadline": new Date("2021-09-27T16:46:50.990Z"),
+      "details": "test details",
+      "parent": "-1"
+      };
 
- let  observableItem = from (JSON.stringify(item));
+    let  observableItem = from (JSON.stringify(item));
 
- 
- 
+    
+    
 
- //dataServiceSpy.saveItem.and.returnValue(observableItem);
-// spyOn(service, 'saveItem').and.returnValue(observableItem);
- //spyOn(component, 'addItemInList').and.;
-spyOn(service, 'updateItem').and.returnValue(observableItem);
- 
- component.item = item;
- component.updateItem();
- //fixture.detectChanges();
-expect(service.updateItem).toHaveBeenCalledTimes(1);
+    //dataServiceSpy.saveItem.and.returnValue(observableItem);
+    // spyOn(service, 'saveItem').and.returnValue(observableItem);
+    //spyOn(component, 'addItemInList').and.;
+    spyOn(service, 'updateItem').and.returnValue(observableItem);
+    
+    component.item = item;
+    component.updateItem();
+    //fixture.detectChanges();
+    expect(service.updateItem).toHaveBeenCalledTimes(1);
 
-expect(service.updateItem(item)).toBeInstanceOf(Observable);
+    expect(service.updateItem(item)).toBeInstanceOf(Observable);
 
-//service.updateItem(item)._subscribe() ;
+    //service.updateItem(item)._subscribe() ;
 
 
-// expect(dataServiceSpy.getItems.calls.count())
- //.toBe(1, 'spy method was called once');
+    // expect(dataServiceSpy.getItems.calls.count())
+    //.toBe(1, 'spy method was called once');
 
 
 

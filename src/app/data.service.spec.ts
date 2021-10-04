@@ -43,17 +43,34 @@ describe('DataService', () => {
   } ;
   
 
+  let dummyItemArray : Item[] = 
+  [
+  {
+    "id": "T200001",
+    "title": "my test task",
+    "done": false,
+    "project": false,
+    "when": "8:00",
+    "deadline": new Date("2021-09-27T16:46:50.990Z"),
+    "details": "test details",
+    "parent": "T20000"
+  } 
+];
+  
+
+
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports : [HttpClientTestingModule , HttpClientTestingModule],
+      imports : [HttpClientTestingModule ],
       providers : [DataService]
     });
     
     
-    httpMock = TestBed.get(HttpTestingController);
     service = TestBed.inject(DataService);
-    httpClient = TestBed.inject(HttpClient);
+    httpMock = TestBed.get(HttpTestingController);
+
+    //httpClient = TestBed.inject(HttpClient);
     
     //service.saveItem(taskItem1).subscribe(() => {
       
@@ -74,14 +91,72 @@ describe('DataService', () => {
   
   
 
-  /*it("should create a project" , (done) => {
-    service.saveItem(projectItem1).subscribe(() => {
+  it("should test getitems" , () => {
+    /*service.saveItem(projectItem1).subscribe(() => {
       (_err: any) => { console.log(_err)}
       done();
     });
+   */
+
    
+   let spyDataService = spyOn(service, 'getItems').and.callThrough();
+ 
+   
+
+   service.getItems().subscribe(() => {
+    // let task = items.find((item) => item.id === taskItem1.id)
+     //expect(task).toBeDefined();
   });
 
+   
+    const  req = httpMock.expectOne(`/items`);
+    console.log("request url **************" + req.request.url);
+
+    expect(req.request.method).toBe("GET");
+
+    req.flush(dummyItemArray);
+    
+    httpMock.verify();
+    
+
+  });
+
+
+
+  it("should test getitem with id" , () => {
+    /*service.saveItem(projectItem1).subscribe(() => {
+      (_err: any) => { console.log(_err)}
+      done();
+    });
+   */
+
+   
+   let spyDataService = spyOn(service, 'getItem').and.callThrough();
+ 
+   
+
+   service.getItem("dummyid").subscribe(() => {
+    // let task = items.find((item) => item.id === taskItem1.id)
+     //expect(task).toBeDefined();
+  });
+
+   
+    const  req = httpMock.expectOne(`/items/dummyid`);
+    console.log("request url **************" + req.request.url);
+
+    expect(req.request.method).toBe("GET");
+
+    req.flush(projectItem1);
+    
+    httpMock.verify();
+    
+
+  });
+  
+
+
+  
+/*
 
   it('should fetch all tasks', () => {
      service.getItems().subscribe((items) => {
@@ -103,7 +178,6 @@ describe('DataService', () => {
    
 
   });
-
 
 */
 

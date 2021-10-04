@@ -40,8 +40,8 @@ export class AddItemComponent implements OnInit {
   }
 
   
-
-  addItem(){
+// this is old code and is not used
+ /* addItem(){
         alert("Add item called");
       // assign an id 
         if(this.item.project === true){
@@ -71,5 +71,5 @@ export class AddItemComponent implements OnInit {
   })
   return projects;
 }
-
+*/
 }

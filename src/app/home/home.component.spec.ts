@@ -40,8 +40,8 @@ describe('HomeComponent', () => {
 
   it('should display login button', () => {
     
-    var element = document.getElementById("login-button")
-    
+    var element =<HTMLElement> document.getElementById("login-button")
+    console.log("element is " + element);
     expect(element?.textContent).toContain("Log In");
   });
 

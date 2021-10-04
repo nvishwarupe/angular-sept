@@ -89,13 +89,15 @@ describe('ItemListComponent', () => {
     router.navigate(['edit-item'])
 
     tick();
+    spyOn(component, 'startEditing').and.callThrough();
+
     console.log("location " + location.path);
-    expect(location.path).toContain("edit-item");
+    expect(location.path()).toContain("edit-item");
   
   }));
 
 
-  it('should list items', () => {
+  it('should get all tasks for a project', () => {
     //const dataServiceSpy =
      // jasmine.createSpyObj('DataService', ['getItems']);
       let itemArray =  [     
@@ -112,18 +114,29 @@ describe('ItemListComponent', () => {
           "id": "T20002",
           "title": "my second test task",
           "done": false,
-          "project": true,
+          "project": false,
           "when": "8:00",
           "deadline": new Date("2021-09-27T16:46:50.990Z"),
           "details": "test details",
-          "parent": "-1"
+          "parent": "T20000"
         } ];
   
+        let taskList : Item [] =[ {
+          "id": "T20002",
+          "title": "my second test task",
+          "done": false,
+          "project": false,
+          "when": "8:00",
+          "deadline": new Date("2021-09-27T16:46:50.990Z"),
+          "details": "test details",
+          "parent": "T20000"
+        } ];
          
-        dataServiceSpy.getItems.and.returnValue(of(itemArray));
-        component.ngOnInit();
+        //dataServiceSpy.getItems.and.returnValue(of(itemArray));
+        component.items= itemArray;
+        let resultList : Item [] = component.getAllTasksForAProject("T20000")
+        expect(resultList).toEqual(taskList);
         //fixture.detectChanges();
-        expect(component.items).toBe(itemArray);;
   });
 
 

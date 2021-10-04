@@ -5,7 +5,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { LoginComponent } from './login.component';
 import { Location} from '@angular/common';
 import { AuthService } from '../auth.service';
-import {NgForm} from '@angular/forms';
+import {FormsModule, NgForm} from '@angular/forms';
 import { DataService } from '../data.service';
 import { ItemListComponent } from '../item-list/item-list.component';
 import { of } from 'rxjs';
@@ -28,7 +28,7 @@ describe('LoginComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [ LoginComponent ],
-      imports : [ RouterTestingModule.withRoutes(
+      imports : [ FormsModule, RouterTestingModule.withRoutes(
         [{ path: "login" , component: LoginComponent} ,
         { path: "item-list" , component: ItemListComponent}]
 
@@ -56,6 +56,57 @@ describe('LoginComponent', () => {
     expect(component).toBeTruthy();
   });
 
+
+  it('should test invalid login functionality', () => {
+     
+    const nameInput: HTMLInputElement = <HTMLInputElement>document.getElementById("username-id");
+    const namePassword: HTMLInputElement = <HTMLInputElement>document.getElementById("passoword-id");
+    const submitButton: HTMLInputElement = <HTMLInputElement>document.getElementById("button-id");
+
+    // simulate user entering a new name into the input box
+    nameInput.value = 'wrong name';
+  
+    submitButton.click();
+  
+    // Tell Angular to update the display binding through the title pipe
+    fixture.detectChanges();
+    const errorDisplay: HTMLInputElement = <HTMLInputElement>document.getElementById("error-id");
+  
+
+    expect(errorDisplay.textContent?.trim()).toBe(component.errorMessage);
+  
+
+
+  });
+
+
+  it('should test login functionality', fakeAsync( () => {
+     
+    var nameInput: HTMLInputElement = <HTMLInputElement>document.getElementById("username-id");
+    var namePassword: HTMLInputElement = <HTMLInputElement>document.getElementById("password-id");
+    var submitButton: HTMLInputElement = <HTMLInputElement>document.getElementById("button-id");
+
+    // simulate user entering a new name into the input box
+    nameInput.value = 'admin';
+    namePassword.value= 'admin';
+
+    const onClickMock = spyOn(component, 'login' );
+
+    submitButton.click();
+
+  
+    // Tell Angular to update the display binding through the title pipe
+    //fixture.detectChanges();
+    tick();
+  expect(onClickMock).toHaveBeenCalled();
+  // check if component is in logged in state    
+  expect(component.error).toBe(false);
+
+  expect(component.error).toBe(false);
+
+  }));
+
+
   it('should route to login page', fakeAsync(() => {
     spyOn(authService, 'canActivate').and.returnValue(true);
     
@@ -68,6 +119,8 @@ describe('LoginComponent', () => {
   
     
   }));
+
+
 
 
   it('should route to list page', fakeAsync(() => {

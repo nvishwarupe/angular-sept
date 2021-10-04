@@ -19,6 +19,7 @@ export class LoginComponent implements OnInit {
   password : string = "";
 
   error : boolean = false;
+  errorMessage : string = "Username and/or Password are incorrect.";
 
   ngOnInit(): void {
   }
@@ -29,8 +30,8 @@ export class LoginComponent implements OnInit {
     if(this.username == 'admin' && this.password == 'admin')
     {
       this.auth.login();
-      this.router.navigate(['list-items'])
       this.error = false;
+      this.router.navigate(['list-items'])
 
     } else 
      {

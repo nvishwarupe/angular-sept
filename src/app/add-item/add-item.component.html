@@ -35,6 +35,8 @@
 
     <input type="string" [(ngModel)]="item.details" placeholder="Details">
   </div>
+  
+  <!--
   <div>
     select:  
     <select [(ngModel)]="item.parent" >
@@ -44,11 +46,19 @@
    <option *ngFor="let parent of getAllProjects()" [ngValue]="parent.id">{{parent.id}} - {{parent.title}}</option>
    </select>  
  </div>
+
+-->
   
+ <div>
+  <button   >Save</button>    
  
+
+</div> 
  
+<!--
   <div>
-    <button  (click)="addItem()">Save</button>    
+    <button  (click)="addItem()"  >Save</button>    
    
 
   </div>
+-->
