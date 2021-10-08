@@ -248,7 +248,7 @@ export class ItemListComponent implements OnInit {
         }
         
         let idString = selectedText.toString().trim();
-        console.log("idString is " + idString);
+        //console.log("idString is " + idString);
 
         let id = idString.substr(0,selectedText.toString().indexOf(' ')); 
        

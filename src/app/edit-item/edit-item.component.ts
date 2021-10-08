@@ -24,7 +24,7 @@ export class EditItemComponent implements OnInit {
 
 
   updateItem() {
-    alert("this.item is" + this.item);
+    //alert("this.item is" + this.item);
     // set parent to no parent 
     if(this.item.parent.toString().trim() == "")
     {
@@ -58,7 +58,7 @@ export class EditItemComponent implements OnInit {
       
       this.projects.filter(function (item) { return item.project === true });
       
-      alert("EditItem Component projects filtered " + JSON.stringify(this.projects));
+      //alert("EditItem Component projects filtered " + JSON.stringify(this.projects));
 
 
     this.activeRoute.paramMap.subscribe(params => {
@@ -75,7 +75,7 @@ export class EditItemComponent implements OnInit {
 
 
           
-            alert("EditComponent: ngOnInit() -  this.item" + JSON.stringify(this.item));
+           // alert("EditComponent: ngOnInit() -  this.item" + JSON.stringify(this.item));
           } else {
             alert("Select task to edit");
           }

@@ -5,62 +5,64 @@
 
 
 <div *ngIf="item != undefined">
-  <div>
+  <div >
      <label for="Title">Title :   </label> 
     <input type="text" [(ngModel)]="item.title" placeholder="Title"> Id  : {{item.id}}
 </div>
   
-  <div class="float-container">  
-    <div class="float-child-left">
-        
-
-    
-            <div>
+  <div class="row  ">  
+    <div class="col">
+            <div >
                 <label for="Done"> Done :   </label> 
             
                 <input type="checkbox" [(ngModel)]="item.done" placeholder="Done">
             </div> 
-            <div>
+            <div >
                 <label for="Done"> IsProject  :   </label> 
             
                 <input type="checkbox" [(ngModel)]="item.project" placeholder="Project">
             </div>
+
+            <div  >
+              Parent:  
+              <select [(ngModel)]="item.parent" >
+               <option value="undefined" selected disabled>Select option</option>
+               <option value="item.parent" selected disabled> {{item.parent}}</option>
+             
+             <option *ngFor="let parent of projects" [ngValue]="parent.id">{{parent.id}} - {{parent.title}}</option>
+             </select>  
+           </div>
+             
             
-            <div>
+            <div >
+               <label for="when"> When:    </label> 
+
                 <input type="time" [(ngModel)]="item.when" placeholder="When">
             </div>
             <div>
+              <label for="Deadline"> Deadline:    </label> 
+
                 <input type="Date" [(ngModel)]="item.deadline" placeholder="Deadline">
             </div>
             
     </div>  
-    <div class="float-child-right">
+    <div class="col">
             
-            <div>
-                <label for="Details"> Details:    </label> 
-   
-                <input type="textarea"  rows="4" cols="50" [(ngModel)]="item.details" placeholder="Details">
-            </div>
+      <div class="col">
+          <label class="row" for="Details"> Details:    </label> 
+          <input type="textarea"  class="row"  rows="10" [(ngModel)]="item.details" placeholder="Details">
+      </div>
     </div>
     
-    </div>
-
-  <div>
-   select:  
-   <select [(ngModel)]="item.parent" >
-    <option value="undefined" selected disabled>Select option</option>
-    <option value="item.parent" selected disabled> {{item.parent}}</option>
-  
-  <option *ngFor="let parent of projects" [ngValue]="parent.id">{{parent.id}} - {{parent.title}}</option>
-  </select>  
-</div>
-  
- 
- 
-  <div>
-    <button id="button-id" (click)="updateItem()">Save</button>    
-    <button  (click)="cancelUpdate()">Cancel</button>
-
-
   </div>
+
+  
+ 
+ 
+  <div style="margin-top: 20px;">
+    <button class="btn btn-outline-primary"  id="button-id" (click)="updateItem()">Save</button>    
+    <button class="btn btn-outline-secondary " (click)="cancelUpdate()">Cancel</button>
+  </div>
+
+
 </div>

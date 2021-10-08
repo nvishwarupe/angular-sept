@@ -10,9 +10,13 @@ export class AuthService implements CanActivate {
   isLoggedIn : boolean = false;
   constructor() { }
 
-  login(){
-    this.isLoggedIn = true;
-
+  login(username: string, password: string){
+    if((username === 'admin') &&( password === 'admin'))
+    {
+      this.isLoggedIn = true;
+    } else {
+      this.isLoggedIn = false;
+    }
   }
 
   logout(){

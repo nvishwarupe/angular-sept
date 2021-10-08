@@ -29,7 +29,7 @@ export class LoginComponent implements OnInit {
   login(){
     if(this.username == 'admin' && this.password == 'admin')
     {
-      this.auth.login();
+      this.auth.login(this.username, this.password);
       this.error = false;
       this.router.navigate(['list-items'])
 
